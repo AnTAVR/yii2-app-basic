@@ -7,7 +7,10 @@
 
 namespace app\assets;
 
+use kartik\icons\FontAwesomeAsset;
+use yii\bootstrap4\BootstrapPluginAsset;
 use yii\web\AssetBundle;
+use yii\web\YiiAsset;
 
 /**
  * Main application asset bundle.
@@ -17,15 +20,20 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
+    public $sourcePath = '@app/assets/app';
+//    public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/app.css',
     ];
     public $js = [
+        'js/app.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+//        PopperAsset::class,
+//        NormalizeCSSAsset::class,
+        YiiAsset::class,
+        BootstrapPluginAsset::class,
+        FontAwesomeAsset::class,
     ];
 }

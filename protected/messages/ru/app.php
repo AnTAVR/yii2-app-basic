@@ -137,7 +137,7 @@ return [
     'Send' => 'Отправить',
     'Set a complex password using uppercase and lowercase letters, numbers and special characters.' => 'Задайте сложный пароль, используя заглавные и строчные буквы, цифры и специальные символы.',
     'Signup' => 'Регистрация',
-    'Static Pages' => 'Статические страницы',
+    'Static Pages' => 'Статичные страницы',
     'Static Url' => 'Урл статичной страницы',
     'Status' => 'Статус',
     'Subject' => 'Тема',

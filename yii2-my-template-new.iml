@@ -6,10 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/protected/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/assets" />
       <excludeFolder url="file://$MODULE_DIR$/protected/backups" />
       <excludeFolder url="file://$MODULE_DIR$/protected/runtime" />
       <excludeFolder url="file://$MODULE_DIR$/protected/vagrant" />
+      <excludeFolder url="file://$MODULE_DIR$/protected/vendor" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

@@ -13,4 +13,7 @@ return [
     'uploader' => [
         'class' => 'app\modules\uploader\Module',
     ],
+    'dump' => [
+        'class' => 'app\modules\dump\Module',
+    ],
 ];

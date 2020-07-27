@@ -59,7 +59,7 @@ class ActionColumn extends BaseActionColumn
             'data-confirm' => Yii::t('app', 'Restore?'),
             'data-method' => 'post',
         ]);
-        $this->initDefaultButton('download', 'download-alt', [
+        $this->initDefaultButton('download', 'download', [
             'title' => Yii::t('app', 'Download'),
             'data-method' => 'post',
         ]);

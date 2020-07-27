@@ -28,6 +28,7 @@
     "kartik-v/yii2-widget-fileinput": "@dev",
     "kartik-v/yii2-editors": "@dev",
     "kartik-v/yii2-validators": "@dev",
+    "symfony/process": "5.1.3",
     "bower-asset/summernote": "0.8.*",
     "bower-asset/codemirror": "5.55.*",
     "bower-asset/normalize-css": "8.0.0",
@@ -37,7 +38,8 @@
     "simialbi/yii2-animate": "*",
     "kv4nt/yii2-owl-carousel2": "*",
     "derekisbusy/yii2-popper": "@dev",
-    "bariew/yii2-module-migration-controller": "~1.3"
+    "bariew/yii2-module-migration-controller": "~1.3",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

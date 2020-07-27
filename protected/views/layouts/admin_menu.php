@@ -14,6 +14,10 @@ $route = Yii::$app->controller->getRoute();
 <?= Nav::widget([
     'options' => ['class' => 'nav nav-pills flex-column small'],
     'items' => [
+        ['label' => Yii::t('app', 'Dump DB'),
+            'active' => $moduleId === 'dump',
+            'visible' => $user->can('dump.openAdminPanel'),
+            'url' => ['/dump/admin-default/index']],
         ['label' => Yii::t('app', 'Static Pages'),
             'visible' => $user->can('statics.openAdminPanel'),
             'active' => $moduleId === 'statics',

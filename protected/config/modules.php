@@ -10,4 +10,7 @@ return [
     'statics' => [
         'class' => 'app\modules\statics\Module',
     ],
+    'uploader' => [
+        'class' => 'app\modules\uploader\Module',
+    ],
 ];

@@ -19,4 +19,7 @@ return [
     'contact' => [
         'class' => 'app\modules\contact\Module',
     ],
+    'callback' => [
+        'class' => 'app\modules\callback\Module',
+    ],
 ];

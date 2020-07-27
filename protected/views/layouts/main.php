@@ -147,6 +147,13 @@ HTML5,
                 'title' => Yii::t('app', 'Contact'),
             ],
         ],
+        ['label' => Icon::show('phone-alt'),
+            'encode' => false,
+            'url' => ['/callback/default/index'],
+            'options' => [
+                'title' => Yii::t('app', 'Callback'),
+            ],
+        ],
     ];
 
     $profileItems = [];

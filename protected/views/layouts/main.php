@@ -140,6 +140,13 @@ HTML5,
                 ['label' => Yii::t('app', 'Совместителем'), 'url' => ['/statics/default/index', 'meta_url' => 'part-timers']],
             ],
         ],
+        ['label' => Icon::show('envelope'),
+            'encode' => false,
+            'url' => ['/contact/default/index'],
+            'options' => [
+                'title' => Yii::t('app', 'Contact'),
+            ],
+        ],
     ];
 
     $profileItems = [];

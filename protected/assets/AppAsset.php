@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
         YiiAsset::class,
         BootstrapPluginAsset::class,
         FontAwesomeAsset::class,
+        AosAsset::class,
         AnimateCssPluginAsset::class,
     ];
 }

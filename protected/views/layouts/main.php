@@ -4,7 +4,7 @@
 
 /* @var $content string */
 
-use app\assets\AppAsset;
+use app\assets\SiteAsset as Asset;
 use app\widgets\Alert;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
@@ -12,7 +12,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
-AppAsset::register($this);
+Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

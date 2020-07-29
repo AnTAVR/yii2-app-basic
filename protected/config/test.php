@@ -1,6 +1,7 @@
 <?php
 
 use app\models\User;
+use kartik\icons\FontAwesomeAsset;
 use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
 use yii\i18n\PhpMessageSource;
@@ -85,6 +86,23 @@ return [
                 BootstrapPluginAsset::class => [
                     'js' => [
                         YII_ENV_DEV ? 'js/bootstrap.bundle.js' : 'js/bootstrap.bundle.min.js',
+                    ],
+                ],
+                FontAwesomeAsset::class => [
+//                    'baseUrl' => '//use.fontawesome.com/releases/v5.14.0',
+                    'sourcePath' => '@bower/fontawesome',
+                    'publishOptions' => [
+                        'only' => [
+                            'css/*',
+                            'js/*',
+                            'webfonts/*',
+                        ]
+                    ],
+                    'js' => [
+//                        YII_ENV_DEV ? 'js/all.js' : 'js/all.min.js',
+                    ],
+                    'css' => [
+                        YII_ENV_DEV ? 'css/all.css' : 'css/all.min.css',
                     ],
                 ],
             ],

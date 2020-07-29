@@ -1,5 +1,6 @@
 <?php
 
+use app\components\Session;
 use borales\extensions\phoneInput\PhoneInputAsset;
 use kartik\editors\assets\CodemirrorAsset;
 use kartik\editors\assets\CodemirrorFormatterAsset;
@@ -60,6 +61,7 @@ $config = [
     ],
     'modules' => require __DIR__ . '/modules.php',
     'components' => [
+        'session' => Session::class,
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
         ],

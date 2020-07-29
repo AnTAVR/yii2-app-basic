@@ -1,5 +1,6 @@
 <?php
 
+use app\components\Session;
 use bariew\moduleMigration\ModuleMigrateController;
 use yii\caching\FileCache;
 use yii\faker\FixtureController;
@@ -39,6 +40,7 @@ $config = [
     ],
     'modules' => require __DIR__ . '/modules.php',
     'components' => [
+        'session' => Session::class,
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
         ],

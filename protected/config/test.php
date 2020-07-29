@@ -67,6 +67,11 @@ return [
     ],
     'modules' => require __DIR__ . '/modules.php',
     'components' => [
+//        'session' => [
+//            'class' => Session::class,
+////            @todo: Из за установки не работают тесты!!!
+//            'savePath' => '@runtime/session',
+//        ],
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
         ],

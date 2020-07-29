@@ -33,6 +33,9 @@ $config = [
         ],
     ],
     'components' => [
+        'formatter' => [
+            'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
+        ],
         'i18n' => [
             'translations' => [
                 'app' => [

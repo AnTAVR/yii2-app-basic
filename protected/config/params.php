@@ -1,7 +1,11 @@
 <?php
 
+$domen = 'localhost.localhost';
+
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'language' => 'ru-RU',
+    'appName' => $domen,
+    'adminEmail' => 'info@' . $domen,
+    'senderEmail' => 'noreply@' . $domen,
+    'senderName' => $domen . ' mailer',
 ];

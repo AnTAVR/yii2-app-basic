@@ -1,6 +1,8 @@
 <?php
 
+use bariew\moduleMigration\ModuleMigrateController;
 use yii\caching\FileCache;
+use yii\faker\FixtureController;
 use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
@@ -90,13 +92,14 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
+        'migrate' => [
+            'class' => ModuleMigrateController::class,
+        ],
         'fixture' => [ // Fixture generation command line.
             'class' => FixtureController::class,
         ],
     ],
-    */
 ];
 
 if (YII_ENV_DEV) {

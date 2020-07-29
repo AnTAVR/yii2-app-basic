@@ -1,6 +1,7 @@
 <?php
 
 use app\models\User;
+use yii\i18n\PhpMessageSource;
 use yii\swiftmailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
@@ -26,6 +27,20 @@ return [
     ],
     'language' => 'en-US',
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => PhpMessageSource::class,
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                ],
+                'test' => [
+                    'class' => PhpMessageSource::class,
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                ],
+            ]
+        ],
         'request' => [
             'cookieValidationKey' => 'test',
             'enableCsrfValidation' => false,

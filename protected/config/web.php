@@ -2,6 +2,7 @@
 
 use app\models\User;
 use yii\caching\FileCache;
+use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\swiftmailer\Mailer;
 
@@ -25,6 +26,20 @@ $config = [
     ],
     'language' => $params['language'],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => PhpMessageSource::class,
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                ],
+                'test' => [
+                    'class' => PhpMessageSource::class,
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                ],
+            ]
+        ],
         'request' => [
             'csrfParam' => 'ckCsrfToken',
             'enableCsrfValidation' => true,

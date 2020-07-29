@@ -26,6 +26,12 @@ $config = [
         '@upload_web' => '@web/upload',
     ],
     'language' => $params['language'],
+    'container' => [
+        'definitions' => [
+        ],
+        'singletons' => [
+        ],
+    ],
     'components' => [
         'i18n' => [
             'translations' => [

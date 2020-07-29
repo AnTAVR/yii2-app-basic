@@ -26,6 +26,12 @@ return [
         '@upload_web' => '@web/upload',
     ],
     'language' => 'en-US',
+    'container' => [
+        'definitions' => [
+        ],
+        'singletons' => [
+        ],
+    ],
     'components' => [
         'i18n' => [
             'translations' => [

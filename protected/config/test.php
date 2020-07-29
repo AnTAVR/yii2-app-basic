@@ -12,6 +12,7 @@ use yii\grid\GridView;
 use yii\i18n\PhpMessageSource;
 use yii\swiftmailer\Mailer;
 use yii\web\JqueryAsset;
+use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 
 $params = require __DIR__ . '/params.php';
@@ -38,6 +39,12 @@ return [
     'language' => 'en-US',
     'container' => [
         'definitions' => [
+            ActiveForm::class => [
+                'enableClientValidation' => false,
+            ],
+            yii\bootstrap4\ActiveForm::class => [
+                'enableClientValidation' => false,
+            ],
         ],
         'singletons' => [
             LinkPager::class => [

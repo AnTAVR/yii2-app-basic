@@ -12,4 +12,5 @@ return [
     'senderName' => $domen . ' mailer',
     'icon-framework' => Icon::FA,
     'bsVersion' => 4,
+    'phone.countries' => ['ru', 'ua'],
 ];

@@ -1,6 +1,7 @@
 <?php
 
 use app\models\User;
+use borales\extensions\phoneInput\PhoneInputAsset;
 use kartik\editors\assets\CodemirrorAsset;
 use kartik\editors\assets\CodemirrorFormatterAsset;
 use kartik\editors\assets\SummernoteAsset;
@@ -142,6 +143,17 @@ return [
                 CodemirrorFormatterAsset::class => [
 //                    'baseUrl' => '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.38.0',
                     'sourcePath' => '@npm/codemirror/lib/util',
+                ],
+                PhoneInputAsset::class => [
+//                    'baseUrl' => '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.38.0',
+                    'sourcePath' => '@bower/intl-tel-input/build',
+                    'js' => [
+                        'js/utils.js',
+                        'js/intlTelInput-jquery.js',
+                    ],
+                    'css' => [
+                        'css/intlTelInput.css',
+                    ],
                 ],
             ],
         ],

@@ -28,6 +28,7 @@
         "bower-asset/fontawesome": "~5.14",
         "bower-asset/aos": "*",
         "npm-asset/codemirror": "2.38",
+        "borales/yii2-phone-input": "0.3.*",
         "bariew/yii2-module-migration-controller": "~1.3"
     },
     "require-dev": {

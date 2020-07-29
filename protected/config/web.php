@@ -9,6 +9,7 @@ use kartik\icons\FontAwesomeAsset;
 use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
 use yii\caching\FileCache;
+use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
@@ -50,6 +51,9 @@ $config = [
                 'lastPageLabel' => true,
                 'firstPageLabel' => true,
                 'jumpPageLabel' => true,
+            ],
+            GridView::class => [
+                'layout' => "{pager}\n{summary}\n{items}\n{pager}",
             ],
         ],
     ],

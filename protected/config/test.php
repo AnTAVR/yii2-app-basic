@@ -8,6 +8,7 @@ use kartik\editors\assets\SummernoteAsset;
 use kartik\icons\FontAwesomeAsset;
 use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
+use yii\grid\GridView;
 use yii\i18n\PhpMessageSource;
 use yii\swiftmailer\Mailer;
 use yii\web\JqueryAsset;
@@ -50,6 +51,9 @@ return [
                 'lastPageLabel' => true,
                 'firstPageLabel' => true,
                 'jumpPageLabel' => true,
+            ],
+            GridView::class => [
+                'layout' => "{pager}\n{summary}\n{items}\n{pager}",
             ],
         ],
     ],

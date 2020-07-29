@@ -1,0 +1,17 @@
+#image-modal .modal-dialog {
+    position: relative;
+    display: table; /* This is important */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 90%;
+}
+
+#image-modal .modal-body {
+    background: url(742.svg) no-repeat center center;
+    min-height: 5em;
+}
+
+#image-modal .modal-body img {
+    width: 100%;
+}

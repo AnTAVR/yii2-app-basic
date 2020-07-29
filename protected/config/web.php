@@ -9,6 +9,7 @@ use kartik\icons\FontAwesomeAsset;
 use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
 use yii\caching\FileCache;
+use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\swiftmailer\Mailer;
@@ -25,7 +26,7 @@ $config = [
     'name' => $params['appName'],
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ArrayHelper::merge(['log'], array_keys(require __DIR__ . '/modules.php')),
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -52,6 +53,7 @@ $config = [
             ],
         ],
     ],
+    'modules' => require __DIR__ . '/modules.php',
     'components' => [
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',

@@ -26,7 +26,7 @@ return [
     'name' => $params['appName'],
     'id' => 'basic-tests',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => [],
+    'bootstrap' => require __DIR__ . '/modules.php',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -53,6 +53,7 @@ return [
             ],
         ],
     ],
+    'modules' => require __DIR__ . '/modules.php',
     'components' => [
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',

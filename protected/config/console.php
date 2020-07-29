@@ -1,6 +1,7 @@
 <?php
 
 use yii\caching\FileCache;
+use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\swiftmailer\Mailer;
@@ -15,7 +16,7 @@ $config = [
     'name' => $params['appName'],
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ArrayHelper::merge(['log'], array_keys(require __DIR__ . '/modules.php')),
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -32,6 +33,7 @@ $config = [
         'singletons' => [
         ],
     ],
+    'modules' => require __DIR__ . '/modules.php',
     'components' => [
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',

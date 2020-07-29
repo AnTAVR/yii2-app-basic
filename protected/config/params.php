@@ -1,5 +1,6 @@
 <?php
 
+use app\themes\BasicTheme;
 use kartik\icons\Icon;
 
 $domen = 'localhost.localhost';
@@ -8,6 +9,7 @@ return [
     'brandLabel' => 'brandLabel',
     'brandLabelText' => 'brandLabelText',
     'language' => 'ru-RU',
+    'theme' => BasicTheme::class,
     'appName' => $domen,
     'adminEmail' => 'info@' . $domen,
     'supportEmail' => 'robot@' . $domen,

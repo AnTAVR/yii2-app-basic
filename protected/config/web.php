@@ -62,6 +62,9 @@ $config = [
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
         ],
+        'view' => [
+            'theme' => $params['theme'],
+        ],
         'i18n' => [
             'translations' => [
                 'app' => [

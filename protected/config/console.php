@@ -6,7 +6,9 @@ use yii\faker\FixtureController;
 use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
+use yii\rbac\DbManager;
 use yii\swiftmailer\Mailer;
+use yii\web\User;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -39,6 +41,17 @@ $config = [
     'components' => [
         'formatter' => [
             'datetimeFormat' => 'Y-MM-dd HH:mm:ss',
+        ],
+        'user' => [
+            'class' => User::class,
+            'identityClass' => \app\modules\account\models\User::class,
+            'enableAutoLogin' => true,
+            'loginUrl' => ['/site/login'],
+        ],
+        'authManager' => [
+            'class' => DbManager::class,
+//            'defaultRoles' => ['users-role'],
+            'cache' => YII_ENV_DEV ? null : 'cache',
         ],
         'i18n' => [
             'translations' => [

@@ -1,6 +1,5 @@
 <?php
 
-use app\models\User;
 use borales\extensions\phoneInput\PhoneInputAsset;
 use kartik\editors\assets\CodemirrorAsset;
 use kartik\editors\assets\CodemirrorFormatterAsset;
@@ -10,8 +9,10 @@ use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
 use yii\grid\GridView;
 use yii\i18n\PhpMessageSource;
+use yii\rbac\DbManager;
 use yii\swiftmailer\Mailer;
 use yii\web\JqueryAsset;
+use yii\web\User;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 
@@ -72,6 +73,16 @@ return [
         'view' => [
             'theme' => $params['theme'],
         ],
+        'user' => [
+            'class' => User::class,
+            'identityClass' => \app\modules\account\models\User::class,
+            'loginUrl' => ['/site/login'],
+        ],
+        'authManager' => [
+            'class' => DbManager::class,
+//            'defaultRoles' => ['users-role'],
+            'cache' => YII_ENV_DEV ? null : 'cache',
+        ],
         'i18n' => [
             'translations' => [
                 'app' => [
@@ -96,9 +107,6 @@ return [
                 'domain' => 'localhost',
             ],
             */
-        ],
-        'user' => [
-            'identityClass' => User::class,
         ],
         'mailer' => [
             'class' => Mailer::class,

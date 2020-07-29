@@ -1,10 +1,13 @@
 <?php
 
 use app\models\User;
+use yii\bootstrap4\BootstrapAsset;
+use yii\bootstrap4\BootstrapPluginAsset;
 use yii\caching\FileCache;
 use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\swiftmailer\Mailer;
+use yii\web\JqueryAsset;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -87,7 +90,25 @@ $config = [
             ],
         ],
         'assetManager' => [
-            'basePath' => dirname(__DIR__) . '/assets',
+            'appendTimestamp' => true,
+            'forceCopy' => YII_ENV_DEV,
+            'bundles' => [
+                JqueryAsset::class => [
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ],
+                ],
+                BootstrapAsset::class => [
+                    'css' => [
+                        YII_ENV_DEV ? 'css/bootstrap.css' : 'css/bootstrap.min.css',
+                    ],
+                ],
+                BootstrapPluginAsset::class => [
+                    'js' => [
+                        YII_ENV_DEV ? 'js/bootstrap.bundle.js' : 'js/bootstrap.bundle.min.js',
+                    ],
+                ],
+            ],
         ],
         /*
         'urlManager' => [

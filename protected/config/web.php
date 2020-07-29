@@ -13,6 +13,7 @@ use yii\i18n\PhpMessageSource;
 use yii\log\FileTarget;
 use yii\swiftmailer\Mailer;
 use yii\web\JqueryAsset;
+use yii\widgets\LinkPager;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -37,6 +38,18 @@ $config = [
         'definitions' => [
         ],
         'singletons' => [
+            LinkPager::class => [
+                'class' => \app\widgets\LinkPager\LinkPager::class,
+                'lastPageLabel' => true,
+                'firstPageLabel' => true,
+                'jumpPageLabel' => true,
+            ],
+            yii\bootstrap4\LinkPager::class => [
+                'class' => \app\widgets\LinkPager\LinkPager::class,
+                'lastPageLabel' => true,
+                'firstPageLabel' => true,
+                'jumpPageLabel' => true,
+            ],
         ],
     ],
     'components' => [

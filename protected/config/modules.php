@@ -22,4 +22,7 @@ return [
     'callback' => [
         'class' => 'app\modules\callback\Module',
     ],
+    'articles' => [
+        'class' => 'app\modules\articles\Module',
+    ],
 ];

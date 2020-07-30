@@ -6,6 +6,7 @@
 
 use app\assets\SiteAsset as Asset;
 use app\modules\account\models\User;
+use app\modules\articles\components\ArticlesItems;
 use app\modules\rbac\helpers\RBAC;
 use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
@@ -159,6 +160,11 @@ HTML5,
         ],
     ];
 
+    $item = ArticlesItems::items(['published_at' => SORT_DESC, 'id' => SORT_ASC]);
+    if ($item) {
+        $menuItems[] = $item;
+    }
+
     $menuItems[] = ['label' => Icon::show('envelope'),
         'encode' => false,
         'url' => ['/contact/default/index'],
@@ -254,6 +260,18 @@ HTML5,
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis impedit, odit minima repellat,
                 doloribus alias amet consequatur inventore.</p>
         </div>
+
+        <?php
+        $items = ArticlesItems::items(['published_at' => SORT_ASC, 'view_count' => SORT_DESC]);
+        if ($items): ?>
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
+                <h4><?= $items['label'] ?></h4>
+                <?= Menu::widget([
+                    'options' => ['class' => 'list-unstyled'],
+                    'items' => $items['items'],
+                ]) ?>
+            </div>
+        <?php endif ?>
 
         <?php
         $menuItems = [

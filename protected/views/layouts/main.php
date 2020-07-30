@@ -38,6 +38,14 @@ $charset = Yii::$app->charset;
 <body>
 <?php $this->beginBody() ?>
 
+<div class="container-fluid">
+    <div class="preloader">
+        <div class="clear-load preloader-load">
+            <span></span>
+        </div>
+    </div>
+</div>
+
 <header id="navbar_home">
     <?php
     $fixed_top = true;

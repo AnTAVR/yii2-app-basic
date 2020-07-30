@@ -167,6 +167,14 @@ HTML5,
         ],
     ];
 
+    $menuItems[] = ['label' => Icon::show('phone-alt'),
+        'encode' => false,
+        'url' => ['/callback/default/index'],
+        'options' => [
+            'title' => Yii::t('app', 'Callback'),
+        ],
+    ];
+
     $profileItems = [];
 
     if (Yii::$app->user->isGuest) {

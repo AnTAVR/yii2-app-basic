@@ -159,6 +159,14 @@ HTML5,
         ],
     ];
 
+    $menuItems[] = ['label' => Icon::show('envelope'),
+        'encode' => false,
+        'url' => ['/contact/default/index'],
+        'options' => [
+            'title' => Yii::t('app', 'Contact'),
+        ],
+    ];
+
     $profileItems = [];
 
     if (Yii::$app->user->isGuest) {

@@ -213,15 +213,12 @@ $config = [
                 ],
             ],
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => YII_ENV_TEST,
             'rules' => [
             ],
-        ],
-        */
-        'db' => $db,
+        ], 'db' => $db,
     ],
     'params' => $params,
 ];

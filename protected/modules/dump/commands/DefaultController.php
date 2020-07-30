@@ -1,0 +1,161 @@
+<?php
+
+namespace app\modules\dump\commands;
+
+use app\modules\dump\helpers\BaseDump;
+use app\modules\dump\helpers\DumpInterface;
+use PDO;
+use PDOException;
+use Symfony\Component\Process\Process;
+use Yii;
+use yii\base\Exception as YiiException;
+use yii\base\InvalidConfigException;
+use yii\console\Controller;
+use yii\console\ExitCode;
+use yii\helpers\Console;
+use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
+
+class DefaultController extends Controller
+{
+    public $defaultAction = 'create';
+
+    /**
+     * @return int
+     * @throws YiiException
+     * @throws InvalidConfigException
+     */
+    public function actionCreate(): int
+    {
+        try {
+            $dbInfo = BaseDump::getDbInfo();
+        } catch (HttpException $e) {
+            Console::output($e->getMessage());
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        if (!$this->confirm('Create dump?')) {
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        $dumpFile = BaseDump::makePath($dbInfo['dbName']);
+
+        /** @var DumpInterface $manager */
+        $manager = $dbInfo['manager'];
+        $command = $manager::makeDumpCommand($dumpFile, $dbInfo);
+
+        Yii::debug([$dumpFile, $command], static::class);
+
+        $process = new Process($command);
+        $process->run();
+        if ($process->isSuccessful()) {
+            Console::output('Dump successfully created.');
+            return ExitCode::OK;
+        }
+
+        Console::output('Dump failed create.');
+        return ExitCode::UNSPECIFIED_ERROR;
+    }
+
+    /**
+     * @param string $fileName Name File Dump
+     * @return int
+     * @throws YiiException
+     * @throws InvalidConfigException
+     */
+    public function actionRestore($fileName): int
+    {
+        try {
+            $dbInfo = BaseDump::getDbInfo();
+        } catch (HttpException $e) {
+            Console::output($e->getMessage());
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        try {
+            static::testFileName($fileName);
+        } catch (NotFoundHttpException $e) {
+            Console::output($e->getMessage());
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        if (!$this->confirm("Restore dump '{$fileName}'?")) {
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        $dumpFile = BaseDump::getPath() . DIRECTORY_SEPARATOR . $fileName;
+
+        /** @var DumpInterface $manager */
+        $manager = $dbInfo['manager'];
+        $command = $manager::makeRestoreCommand($dumpFile, $dbInfo);
+
+        Yii::debug([$dumpFile, $command], static::class);
+
+        $process = new Process($command);
+        $process->run();
+        if ($process->isSuccessful()) {
+            Console::output('Dump successfully restored.');
+            return ExitCode::OK;
+        }
+
+        Console::output('Dump failed restored.');
+        return ExitCode::UNSPECIFIED_ERROR;
+    }
+
+    /**
+     * @param string $fileName Name File Dump
+     * @throws NotFoundHttpException
+     * @throws YiiException
+     */
+    public static function testFileName($fileName): void
+    {
+        $fileList = BaseDump::getFilesList();
+        $in_array = false;
+        foreach ($fileList as $file) {
+            if ($fileName === $file['file']) {
+                $in_array = true;
+                break;
+            }
+        }
+
+        if (!$in_array) {
+            throw new NotFoundHttpException('File not found.');
+        }
+    }
+
+    /**
+     * @return int
+     * @throws InvalidConfigException
+     */
+    public function actionTest(): ?int
+    {
+        try {
+            $dbInfo = BaseDump::getDbInfo();
+        } catch (HttpException $e) {
+            Console::output($e->getMessage());
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        try {
+            new PDO($dbInfo['dsn'], $dbInfo['username'], $dbInfo['password']);
+            Console::output('Connection success.');
+            return ExitCode::OK;
+        } catch (PDOException $e) {
+            Console::output('Connection failed: ' . $e->getMessage());
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+    }
+
+    /**
+     * @return int
+     * @throws YiiException
+     */
+    public function actionList(): int
+    {
+        $fileList = BaseDump::getFilesList();
+        foreach ($fileList as $file) {
+            Console::output($file['file']);
+        }
+        return ExitCode::OK;
+    }
+}

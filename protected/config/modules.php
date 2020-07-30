@@ -13,4 +13,7 @@ return [
     'statics' => [
         'class' => 'app\modules\statics\Module',
     ],
+    'dump' => [
+        'class' => 'app\modules\dump\Module',
+    ],
 ];

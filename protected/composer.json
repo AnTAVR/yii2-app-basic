@@ -30,6 +30,8 @@
         "kartik-v/yii2-editors": "@dev",
         "kartik-v/yii2-validators": "@dev",
         "bower-asset/animate.css": "~3.7",
+        "bower-asset/popper.js": "*",
+        "bower-asset/normalize-css": "8.0.0",
         "bower-asset/summernote": "0.8.*",
         "bower-asset/codemirror": "5.55.*",
         "bower-asset/fontawesome": "~5.14",

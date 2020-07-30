@@ -4,13 +4,11 @@ namespace app\modules\account\actions;
 
 use Yii;
 use yii\base\Action;
+use yii\web\Response;
 
 class LogoutAction extends Action
 {
-    /**
-     * @return string
-     */
-    public function run(): string
+    public function run(): Response
     {
         if (!Yii::$app->user->isGuest) {
             Yii::$app->user->logout();

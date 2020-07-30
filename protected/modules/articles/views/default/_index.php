@@ -13,9 +13,7 @@ use yii\web\View;
 
 <div class="<?= $class ?>" data-aos="fade-up">
     <div class="card mt-2 mb-2">
-        <div class="card-header">
-            <h4><?= Html::encode($model->content_title) ?></h4>
-        </div>
+        <h4 class="card-header"><?= Html::encode($model->content_title) ?></h4>
         <div class="card-body">
             <?= $model->content_short ?>
 

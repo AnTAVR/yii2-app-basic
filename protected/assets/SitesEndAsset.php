@@ -4,18 +4,17 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class SiteAsset extends AssetBundle
+class SitesEndAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets/site';
+    public $depends = [
+        SiteBeginAsset::class,
+        AppEndAsset::class,
+    ];
     public $css = [
-        'css/preloader.css',
         'css/site.css',
     ];
     public $js = [
-        'js/preloader.js',
         'js/site.js',
-    ];
-    public $depends = [
-        AppAsset::class
     ];
 }

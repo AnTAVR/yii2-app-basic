@@ -4,7 +4,8 @@
 
 /* @var $content string */
 
-use app\assets\SiteAsset as Asset;
+use app\assets\SiteBeginAsset;
+use app\assets\SitesEndAsset;
 use app\modules\account\models\User;
 use app\modules\articles\components\ArticlesItems;
 use app\modules\rbac\helpers\RBAC;
@@ -20,7 +21,7 @@ use yii\bootstrap4\NavBar;
 use yii\web\View;
 use yii\widgets\Menu;
 
-$asset = Asset::register($this);
+$asset = SiteBeginAsset::register($this);
 $charset = Yii::$app->charset;
 ?>
 <?php $this->beginPage() ?>
@@ -332,6 +333,7 @@ HTML5,
 <?= TopLink::widget() ?>
 <?= Thumbnail::widget() ?>
 
+<?php SitesEndAsset::register($this); ?>
 <?php $this->endBody() ?>
 
 <script>

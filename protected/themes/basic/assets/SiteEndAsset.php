@@ -2,20 +2,21 @@
 
 namespace app\themes\basic\assets;
 
-use app\assets\AppAsset;
+use app\assets\AppEndAsset;
 use app\themes\BasicTheme as Theme;
 use yii\web\AssetBundle;
 
-class SiteAsset extends AssetBundle
+class SiteEndAsset extends AssetBundle
 {
+    public $depends = [
+        SiteBeginAsset::class,
+        AppEndAsset::class,
+    ];
     public $css = [
         'css/site.css',
     ];
     public $js = [
         'js/site.js',
-    ];
-    public $depends = [
-        AppAsset::class
     ];
 
     public function init(): void

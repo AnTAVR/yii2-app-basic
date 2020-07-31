@@ -4,7 +4,8 @@
 
 /* @var $content string */
 
-use app\assets\AdminAsset as Asset;
+use app\assets\AdminBeginAsset;
+use app\assets\AdminEndAsset;
 use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
 use app\widgets\TopLink\TopLink;
@@ -15,7 +16,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\web\View;
 
-$asset = Asset::register($this);
+$asset = AdminBeginAsset::register($this);
 $charset = Yii::$app->charset;
 ?>
 <?php $this->beginPage() ?>
@@ -118,6 +119,7 @@ $charset = Yii::$app->charset;
 <?= TopLink::widget() ?>
 <?= Thumbnail::widget() ?>
 
+<?php AdminEndAsset::register($this); ?>
 <?php $this->endBody() ?>
 
 <script>

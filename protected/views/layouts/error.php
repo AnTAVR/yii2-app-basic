@@ -4,11 +4,12 @@
 
 /* @var $content string */
 
-use app\assets\AppAsset as Asset;
+use app\assets\AppBeginAsset;
+use app\assets\AppEndAsset;
 use yii\bootstrap4\Html;
 use yii\web\View;
 
-$asset = Asset::register($this);
+$asset = AppBeginAsset::register($this);
 $charset = Yii::$app->charset;
 ?>
 <?php $this->beginPage() ?>
@@ -29,6 +30,7 @@ $charset = Yii::$app->charset;
 
 <?= $content ?>
 
+<?php AppEndAsset::register($this); ?>
 <?php $this->endBody() ?>
 
 </body>

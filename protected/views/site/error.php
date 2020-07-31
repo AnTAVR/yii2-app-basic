@@ -6,12 +6,10 @@
 
 /* @var $exception Exception */
 
-use app\assets\AppAsset as Asset;
 use app\helpers\CSS;
 use yii\bootstrap4\Html;
 use yii\web\View;
 
-$asset = Asset::register($this);
 $this->title = $name;
 ?>
 

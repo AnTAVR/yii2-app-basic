@@ -273,6 +273,7 @@ return [
     'Vacancies' => 'Вакансии',
     'Verification Code' => 'Проверочный код',
     'Verify Rules' => 'С правилами согласен',
+    'View Count' => 'Просмотры',
     'View image' => 'Просмотр изображения',
     'View on site' => 'Просмотр на сайте',
     'We will respond to you as soon as possible.' => 'Мы ответим Вам как можно скорее.',

@@ -61,6 +61,7 @@ $charset = Yii::$app->charset;
     ]);
 
     $placeholder = Yii::t('app', 'Search');
+    $icon = Icon::show('search');
     $menuItems = [
         <<<HTML5
 <li class="nav-item float-left">
@@ -68,7 +69,7 @@ $charset = Yii::$app->charset;
         <input type="hidden" name="cx" value="">
         <input type="hidden" name="ie" value="$charset">
         <input class="form-control-sm m-1" type="search" name="q" placeholder="$placeholder" aria-label="$placeholder">
-        <button class="btn btn-outline-danger btn-sm" type="submit">$placeholder</button>
+        <button class="btn btn-outline-danger btn-sm" type="submit">$icon</button>
     </form>
 </li>
 HTML5,

@@ -5,6 +5,7 @@ use kartik\editors\assets\CodemirrorAsset;
 use kartik\editors\assets\CodemirrorFormatterAsset;
 use kartik\editors\assets\SummernoteAsset;
 use kartik\icons\FontAwesomeAsset;
+use kv4nt\owlcarousel\OwlCarouselAsset;
 use yii\bootstrap4\BootstrapAsset;
 use yii\bootstrap4\BootstrapPluginAsset;
 use yii\web\JqueryAsset;
@@ -89,6 +90,16 @@ return [
             ],
             'css' => [
                 'css/intlTelInput.css',
+            ],
+        ],
+        OwlCarouselAsset::class => [
+            'sourcePath' => '@bower/owl.carousel/dist',
+            'js' => [
+                YII_ENV_DEV ? 'owl.carousel.js' : 'owl.carousel.min.js',
+            ],
+            'css' => [
+                YII_ENV_DEV ? 'assets/owl.carousel.css' : 'assets/owl.carousel.min.css',
+                YII_ENV_DEV ? 'assets/owl.theme.default.css' : 'assets/owl.theme.default.min.css',
             ],
         ],
     ],

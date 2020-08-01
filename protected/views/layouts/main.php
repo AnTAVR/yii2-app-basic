@@ -13,8 +13,8 @@ use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
 use app\widgets\TopLink\TopLink;
 use kartik\icons\Icon;
+use kv4nt\owlcarousel\OwlCarouselWidget;
 use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Carousel;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
@@ -82,27 +82,54 @@ HTML5,
     ]);
     NavBar::end();
     ?>
+
 </header>
 
 <main class="container-fluid">
-    <?= Carousel::widget([
-        'showIndicators' => true,
-        'crossfade' => true,
-        'items' => [
-            [
-                'content' => Html::img($asset->baseUrl . '/img/carousel1.png', ['class' => 'carousel-img']),
-                'caption' => '<h1>This is title 1</h1><p>This is the caption text</p>',
-            ],
-            [
-                'content' => Html::img($asset->baseUrl . '/img/carousel2.png', ['class' => 'carousel-img']),
-                'caption' => '<h2>This is title 2</h2><p>This is the caption text</p>',
-            ],
-            [
-                'content' => Html::img($asset->baseUrl . '/img/carousel3.png', ['class' => 'carousel-img']),
-                'caption' => '<h3>This is title 3</h3><p>This is the caption text</p>',
-            ],
-        ]
-    ]) ?>
+    <?php OwlCarouselWidget::begin([
+        'container' => 'div',
+        'containerOptions' => [
+            'id' => 'carousel_home',
+            'class' => 'owl-theme',
+        ],
+        'pluginOptions' => [
+            'nav' => true,
+            'dots' => true,
+//            'center' => true,
+            'autoplay' => true,
+            'autoplayHoverPouse' => true,
+            'smartSpeed' => 450,
+            'items' => 1,
+            'loop' => true,
+            'animateOut' => 'zoomOutDown',
+            'animateIn' => 'flipInX',
+        ],
+    ]);
+    ?>
+
+    <div class="item">
+        <?= Html::img($asset->baseUrl . '/img/carousel1.png', ['alt' => 'Image 1']) ?>
+        <div class="item-body">
+            <h1>This is title 1</h1>
+            <p>This is the caption text</p>
+        </div>
+    </div>
+    <div class="item">
+        <?= Html::img($asset->baseUrl . '/img/carousel2.png', ['alt' => 'Image 2']) ?>
+        <div class="item-body">
+            <h2>This is title 1</h2>
+            <p>This is the caption text</p>
+        </div>
+    </div>
+    <div class="item">
+        <?= Html::img($asset->baseUrl . '/img/carousel3.png', ['alt' => 'Image 3']) ?>
+        <div class="item-body">
+            <h3>This is title 1</h3>
+            <p>This is the caption text</p>
+        </div>
+    </div>
+
+    <?php OwlCarouselWidget::end(); ?>
 
     <?php
     $menuItems = [];

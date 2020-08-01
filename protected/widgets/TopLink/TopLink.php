@@ -5,6 +5,7 @@ namespace app\widgets\TopLink;
 use kartik\icons\Icon;
 use Yii;
 use yii\base\Widget;
+use yii\bootstrap4\Html;
 
 class TopLink extends Widget
 {
@@ -35,11 +36,10 @@ class TopLink extends Widget
             $text = $this->text;
         }
         $icon = Icon::show($this->icon);
-        return <<<HTML
-<div id="$this->idw" class="toplink" title="$this->text">
-$icon
-$text
-</div>
-HTML;
+        return HTML::tag('div', $icon . $text, [
+            'id' => $this->idw,
+            'class' => 'btn btn-outline-info btn-lg',
+            'title' => $this->text,
+        ]);
     }
 }

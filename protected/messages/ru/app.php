@@ -187,6 +187,7 @@ return [
     'Products Url' => 'Урл к продукции',
     'Profile' => 'Профиль',
     'Published At' => 'Опубликовано',
+    'Quick Links' => 'Быстрые ссылки',
     'RBAC' => 'Управление доступом',
     'RECOVERY_PASSWORD' => '',
     'Registration on the site {site}' => 'Регистрация на сайте {site}',

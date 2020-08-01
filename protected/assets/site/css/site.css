@@ -75,3 +75,12 @@
     font-size: 21px;
     padding: 14px 24px;
 }
+
+body footer a, body footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+body footer a:hover {
+    padding-left: 1em;
+}

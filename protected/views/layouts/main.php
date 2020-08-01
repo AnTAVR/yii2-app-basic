@@ -299,7 +299,7 @@ HTML5,
 <footer class="container-fluid badge-dark border-top border-danger">
     <div class="row justify-content-between">
         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-right">
-            <h2>About Us</h2>
+            <h2><?= Yii::t('app', 'About Us') ?></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis impedit, odit minima repellat,
                 doloribus alias amet consequatur inventore.</p>
         </div>
@@ -349,7 +349,7 @@ HTML5,
         ?>
 
         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-            <h4>Quick Links</h4>
+            <h4><?= Yii::t('app', 'Quick Links') ?></h4>
             <?= Menu::widget([
                 'options' => ['class' => 'list-unstyled'],
                 'items' => $menuItems,

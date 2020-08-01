@@ -1,22 +1,28 @@
 <?php
-
-use yii\grid\GridView;
-use yii\widgets\LinkPager;
-
+/** @noinspection ClassConstantCanBeUsedInspection */
 return [
-    LinkPager::class => [
-        'class' => \app\widgets\LinkPager\LinkPager::class,
+    yii\widgets\LinkPager::class => [
+        'class' => app\widgets\LinkPager\LinkPager::class,
         'lastPageLabel' => true,
         'firstPageLabel' => true,
         'jumpPageLabel' => true,
     ],
     yii\bootstrap4\LinkPager::class => [
-        'class' => \app\widgets\LinkPager\LinkPager::class,
+        'class' => app\widgets\LinkPager\LinkPager::class,
         'lastPageLabel' => true,
         'firstPageLabel' => true,
         'jumpPageLabel' => true,
     ],
-    GridView::class => [
+    yii\widgets\ActiveField::class => [
+        'class' => yii\bootstrap4\ActiveField::class,
+    ],
+    yii\widgets\ActiveForm::class => [
+        'class' => yii\bootstrap4\ActiveForm::class,
+    ],
+    yii\widgets\InputWidget::class => [
+        'class' => yii\bootstrap4\InputWidget::class,
+    ],
+    yii\grid\GridView::class => [
         'layout' => "{pager}\n{summary}\n{items}\n{pager}",
     ],
 ];

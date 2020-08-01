@@ -104,3 +104,7 @@ div.required label:after {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.has-error {
+    color: red;
+}

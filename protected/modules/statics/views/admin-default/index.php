@@ -4,12 +4,15 @@
 
 /* @var $dataProvider ActiveDataProvider */
 
+/* @var $searchModel StaticPageSearch */
+
 use app\components\grid\ActionColumn;
 use app\helpers\CSS;
+use app\modules\statics\models\StaticPage;
+use app\modules\statics\models\StaticPageSearch;
 use kartik\icons\Icon;
 use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
-use yii\grid\DataColumn;
 use yii\grid\GridView;
 use yii\web\View;
 
@@ -36,15 +39,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             [
-                'class' => DataColumn::class,
                 'attribute' => 'id',
                 'headerOptions' => [
                     'class' => 'col-1'
                 ],
             ],
-            'url',
+            [
+                'attribute' => 'meta_url',
+                'value' => static function ($data) {
+                    /** @var StaticPage $data */
+                    return $data->getUrl();
+                }
+            ],
             'content_title',
             [
                 'class' => ActionColumn::class,

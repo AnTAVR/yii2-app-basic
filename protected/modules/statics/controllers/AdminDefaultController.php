@@ -3,10 +3,10 @@
 namespace app\modules\statics\controllers;
 
 use app\modules\statics\models\StaticPage;
+use app\modules\statics\models\StaticPageSearch;
 use Exception;
 use Throwable;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -44,18 +44,12 @@ class AdminDefaultController extends Controller
      */
     public function actionIndex(): string
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => StaticPage::find(),
-            'pagination' => [
-                'defaultPageSize' => $this->module->params['adminPageSize'],
-            ],
-            'sort' => [
-                'defaultOrder' => ['id' => SORT_DESC,],
-            ],
-        ]);
+        $searchModel = new StaticPageSearch();
+        $dataProvider = $searchModel->search();
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

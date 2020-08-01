@@ -8,7 +8,11 @@ class m000001_001500_insert_statics extends Migration
 {
     public $tableName;
 
-    public $content_static = ['docs', 'history', 'priorities', 'partners', 'vacancy', 'conditions', 'resume', 'students', 'part-timers', 'about', 'rules', 'delivery', 'payment'];
+    public $content_static = [
+        'euromap', 'docs', 'history', 'priorities', 'partners', 'vacancy', 'conditions',
+        'resume', 'students', 'part-timers', 'about', 'rules', 'delivery', 'payment',
+        'testimonials', 'terms-of-service', 'privacy',
+    ];
 
     public function init(): void
     {
@@ -79,10 +83,16 @@ HTML5;
             $content_short,
         ], DefaultContent::CONTENT_FULL);
 
+        $styles = [
+            ' float-left',
+            ' float-right',
+            ' float-none',
+        ];
         foreach ($this->content_static as $title) {
+            $style = $styles[array_rand($styles)];
             $this->insert($this->tableName, [
                     'content_title' => $title,
-                    'content_full' => str_replace(['{title}', '{float}'], [$title, ' float-right'], $content_full),
+                    'content_full' => str_replace(['{title}', '{float}'], [$title, $style], $content_full),
                     'meta_url' => $title,
                 ]
             );

@@ -5,6 +5,7 @@
 /* @var $model Articles */
 
 use app\modules\articles\models\Articles;
+use app\modules\articles\traits\ArticlesStatusTrait;
 use app\widgets\UrlTranslit\UrlTranslit;
 use kartik\datetime\DateTimePicker;
 use kartik\editors\Summernote;
@@ -18,7 +19,7 @@ use yii\web\View;
 
 <div class="form-group form-row">
     <?= $form->field($model, 'status', ['options' => ['class' => 'col-md-3']])
-        ->dropDownList(Articles::getStatusList()) ?>
+        ->dropDownList(ArticlesStatusTrait::getStatusList()) ?>
 
     <?= $form->field($model, 'published', ['options' => ['class' => 'col-md-5']])
         ->widget(DateTimePicker::class, [

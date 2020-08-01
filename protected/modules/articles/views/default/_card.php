@@ -5,24 +5,24 @@
 
 /* @var $class string */
 
+use app\helpers\CSS;
 use app\modules\articles\models\Articles;
 use yii\bootstrap4\Html;
 use yii\web\View;
 
 ?>
 
-<div class="<?= $class ?>" data-aos="fade-up">
-    <div class="card mt-2 mb-2">
-        <h4 class="card-header"><?= Html::encode($model->content_title) ?></h4>
+<div class="pt-2 pb-2 <?= $class ?> <?= CSS::generateCurrentClass() ?>" data-aos="fade-up">
+    <div class="card">
         <div class="card-body">
+            <h2 class="card-title"><?= Html::encode($model->content_title) ?></h2>
+
             <?= $model->content_short ?>
 
-        </div>
-        <div class="card-footer">
             <?= Html::a(Yii::t('app', 'More') . ' &raquo',
                 ['view', 'meta_url' => $model->meta_url],
                 [
-                    'class' => 'btn btn-light',
+                    'class' => 'card-link',
                 ]) ?>
 
         </div>

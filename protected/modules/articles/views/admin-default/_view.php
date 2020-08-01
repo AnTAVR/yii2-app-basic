@@ -15,6 +15,7 @@ use yii\widgets\DetailView;
     'attributes' => [
         'meta_url',
         'url',
+        'view_count',
         'content_title',
         'content_short:raw',
         'content_full:raw',

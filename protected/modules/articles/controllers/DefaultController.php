@@ -42,8 +42,11 @@ class DefaultController extends Controller
      */
     public function actionView($meta_url): string
     {
+        $model = $this->findModel($meta_url);
+        $model->updateCounters(['view_count' => 1]);
+
         return $this->render('view', [
-            'model' => $this->findModel($meta_url),
+            'model' => $model,
         ]);
     }
 

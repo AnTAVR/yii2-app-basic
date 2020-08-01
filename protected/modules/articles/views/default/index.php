@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo '<div class="row">', "\n";
             $open = true;
         }
-        echo $this->render('_index', ['model' => $model, 'class' => 'col-sm-6']);
+        echo $this->render('_card', ['model' => $model, 'class' => 'col-md-6']);
         if ($i >= $col) {
             echo '</div>', "\n\n";
             $i = 0;

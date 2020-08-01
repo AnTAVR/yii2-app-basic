@@ -197,7 +197,7 @@ HTML5,
         ],
     ];
 
-    $item = ArticlesItems::items(['published_at' => SORT_DESC, 'id' => SORT_ASC]);
+    $item = ArticlesItems::items(['published_at' => SORT_DESC, 'id' => SORT_DESC]);
     if ($item) {
         $menuItems[] = $item;
     }
@@ -299,7 +299,7 @@ HTML5,
         </div>
 
         <?php
-        $items = ArticlesItems::items(['published_at' => SORT_ASC, 'view_count' => SORT_DESC]);
+        $items = ArticlesItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
         if ($items): ?>
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
                 <h4><?= $items['label'] ?></h4>
@@ -365,7 +365,7 @@ HTML5,
 <?php $this->endBody() ?>
 
 <script>
-    AOS.init();
+    AOS.init({offset: 240});
 </script>
 </body>
 </html>

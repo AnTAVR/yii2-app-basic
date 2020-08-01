@@ -26,9 +26,14 @@ class m000001_002100_insert_articles extends Migration
             $content_short,
         ], DefaultContent::CONTENT_FULL);
 
+        $styles = [
+            ' float-left',
+            ' float-right',
+            ' float-none',
+        ];
         for ($i = 0; $i++ < self::COUNT;) {
             $title = self::CONTENT_TITLE . $i;
-            $style = '';
+            $style = $styles[array_rand($styles)];
             $this->insert($this->tableName, [
                 'published_at' => time(),
                 'status' => IActiveArticlesStatus::ACTIVE,

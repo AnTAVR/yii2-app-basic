@@ -82,7 +82,7 @@ class Articles extends ActiveRecord
             ['status', 'integer'],
             ['status', 'default',
                 'value' => IActiveArticlesStatus::DRAFT],
-            ['status', 'in', 'range' => static::getStatusRange()],
+            ['status', 'in', 'range' => ArticlesStatusTrait::getStatusRange()],
         ];
     }
 
@@ -103,7 +103,9 @@ class Articles extends ActiveRecord
             'meta_description' => Yii::t('app', 'Meta Description'),
             'meta_keywords' => Yii::t('app', 'Meta Keywords'),
 
-            'url' => Yii::t('app', 'Articles Url'),
+            'view_count' => Yii::t('app', 'View Count'),
+
+            'url' => Yii::t('app', 'Url'),
         ];
     }
 

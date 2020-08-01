@@ -3,9 +3,9 @@
 namespace app\modules\articles\controllers;
 
 use app\modules\articles\models\Articles;
+use app\modules\articles\models\ArticlesSearch;
 use Throwable;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -40,18 +40,12 @@ class AdminDefaultController extends Controller
 
     public function actionIndex(): string
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Articles::find(),
-            'pagination' => [
-                'defaultPageSize' => $this->module->params['adminPageSize'],
-            ],
-            'sort' => [
-                'defaultOrder' => ['id' => SORT_DESC,],
-            ],
-        ]);
+        $searchModel = new ArticlesSearch();
+        $dataProvider = $searchModel->search();
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

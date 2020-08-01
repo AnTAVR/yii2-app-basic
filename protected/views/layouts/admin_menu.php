@@ -43,5 +43,10 @@ $route = Yii::$app->controller->getRoute();
             'visible' => $user->can('articles.openAdminPanel'),
             'url' => ['/articles/admin-default'],
         ],
+        ['label' => Yii::t('app', 'News'),
+            'active' => $moduleId === 'news',
+            'visible' => $user->can('news.openAdminPanel'),
+            'url' => ['/news/admin-default'],
+        ],
     ],
 ]) ?>

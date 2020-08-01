@@ -25,4 +25,7 @@ return [
     'articles' => [
         'class' => 'app\modules\articles\Module',
     ],
+    'news' => [
+        'class' => 'app\modules\news\Module',
+    ],
 ];

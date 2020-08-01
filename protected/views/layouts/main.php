@@ -8,6 +8,7 @@ use app\assets\SiteBeginAsset;
 use app\assets\SitesEndAsset;
 use app\modules\account\models\User;
 use app\modules\articles\components\ArticlesItems;
+use app\modules\news\components\NewsItems;
 use app\modules\rbac\helpers\RBAC;
 use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
@@ -202,6 +203,11 @@ HTML5,
         $menuItems[] = $item;
     }
 
+    $item = NewsItems::items(['published_at' => SORT_DESC, 'id' => SORT_DESC]);
+    if ($item) {
+        $menuItems[] = $item;
+    }
+
     $menuItems[] = ['label' => Icon::show('envelope'),
         'encode' => false,
         'url' => ['/contact/default/index'],
@@ -309,6 +315,18 @@ HTML5,
                 ]) ?>
             </div>
         <?php endif ?>
+        <?php
+
+        $items = NewsItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
+        if ($items): ?>
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
+                <h4><?= $items['label'] ?></h4>
+                <?= Menu::widget([
+                    'options' => ['class' => 'list-unstyled'],
+                    'items' => $items['items'],
+                ]) ?>
+            </div>
+        <?php endif ?>
 
         <?php
         $menuItems = [
@@ -332,14 +350,6 @@ HTML5,
 
         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
             <h4>Quick Links</h4>
-            <?= Menu::widget([
-                'options' => ['class' => 'list-unstyled'],
-                'items' => $menuItems,
-            ]) ?>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-            <h4 class="footer-heading">Quick Links</h4>
             <?= Menu::widget([
                 'options' => ['class' => 'list-unstyled'],
                 'items' => $menuItems,

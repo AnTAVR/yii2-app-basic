@@ -13,8 +13,8 @@ class LinkPager extends BaseLinkPager
 {
     public $jumpPageLabel = false;
     public $jumpPageCssClass = 'jump';
-    public $btnJumpPageCssClass = 'btn btn-outline-info btn-sm';
-    public $textJumpPageCssClass = 'form-control';
+    public $btnJumpPageCssClass = 'btn btn-info btn-sm';
+    public $textJumpPageCssClass = 'form-control-sm';
     public $jumpPageReplace = '{page_num}';
     public $options = ['class' => ['pagination-sm']];
 
@@ -145,7 +145,7 @@ class LinkPager extends BaseLinkPager
         $input = Html::textInput(null, $page, [
             'size' => '3',
             'maxlength' => '6',
-            'options' => ['class' => $this->textJumpPageCssClass],
+            'class' => $this->textJumpPageCssClass,
             'onkeydown' => '$().LinkPager.onkeydown(this, event);'
         ]);
 
@@ -154,7 +154,7 @@ class LinkPager extends BaseLinkPager
             'options' => ['class' => $this->btnJumpPageCssClass, 'onclick' => '$().LinkPager.onclick(this);'],
         ]);
 
-        $item = Html::tag('div', $button . $input, ['class' => 'input-group-append']);
+        $item = Html::tag('div', $input . $button, ['class' => 'input-group-append']);
         return Html::tag($linkWrapTag, $item, $options);
     }
 }

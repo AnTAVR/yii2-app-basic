@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="clearfix <?= CSS::generateCurrentClass() ?>">
     <?php
     if ($model->content_full) {
-        echo Html::tag('div', $model->content_full, ['class' => 'card-body',]);
+        echo Html::tag('div', $model->content_full, ['class' => 'clearfix card-body',]);
     }
     ?>
 

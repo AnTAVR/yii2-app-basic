@@ -15,5 +15,6 @@ class SiteBeginAsset extends AssetBundle
     ];
     public $js = [
         'js/preloader.js',
+        'js/animated_navbar.js',
     ];
 }

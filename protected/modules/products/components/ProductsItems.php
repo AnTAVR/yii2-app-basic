@@ -12,23 +12,27 @@ class ProductsItems
     {
         $moduleId = Yii::$app->controller->module->id;
         $title = null;
+        $url = null;
         $itemsMenu = [];
         $items = [];
         foreach (static::findModel($order, $category_id) as $model) {
             if ($category_id !== null && $title === null) {
-                $title = $model->category->content_title;
+                $category = $model->category;
+                $title = $category->content_title;
+                $url = $category->arrUrl;
             }
             $items[] = ['label' => $model->content_title, 'url' => $model->arrUrl];
         }
 
         if ($title === null) {
             $title = Yii::t('app', 'Products');
+            $url = ['/products'];
         }
         if ($items) {
             $itemsMenu = [
                 'label' => $title,
                 'active' => $moduleId === 'products',
-                'url' => ['/products'],
+                'url' => $url,
                 'items' => $items,
             ];
         }

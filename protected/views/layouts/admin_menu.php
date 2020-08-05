@@ -2,8 +2,8 @@
 
 /* @var $this View */
 
+use yii\bootstrap4\Nav;
 use yii\web\View;
-use yii\widgets\Menu;
 
 $controllerId = Yii::$app->controller->id;
 $moduleId = Yii::$app->controller->module->id;
@@ -11,8 +11,8 @@ $user = Yii::$app->user;
 $route = Yii::$app->controller->getRoute();
 
 ?>
-<?= Menu::widget([
-    'options' => ['class' => 'list-unstyled small'],
+<?= Nav::widget([
+    'options' => ['class' => 'd-none d-xl-block'],
     'items' => [
         ['label' => Yii::t('app', 'Dump DB'),
             'active' => $moduleId === 'dump',

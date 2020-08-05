@@ -68,6 +68,7 @@ return [
     'Content Full' => 'Полное содержание',
     'Content Short' => 'Короткое содержание',
     'Content Title' => 'Заголовок',
+    'Count' => 'Количество',
     'Create' => 'Создать',
     'Create Articles' => 'Создание статьи',
     'Create Dump' => 'Создать дамп',

@@ -5,7 +5,7 @@
 /* @var $content string */
 
 use app\assets\SiteBeginAsset;
-use app\assets\SitesEndAsset;
+use app\assets\SiteEndAsset;
 use app\modules\account\models\User;
 use app\modules\articles\components\ArticlesItems;
 use app\modules\news\components\NewsItems;
@@ -385,7 +385,7 @@ HTML5,
 <?= TopLink::widget() ?>
 <?= Thumbnail::widget() ?>
 
-<?php SitesEndAsset::register($this); ?>
+<?php SiteEndAsset::register($this); ?>
 <?php $this->endBody() ?>
 
 <script>

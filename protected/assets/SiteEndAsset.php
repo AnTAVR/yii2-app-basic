@@ -4,7 +4,7 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class SitesEndAsset extends AssetBundle
+class SiteEndAsset extends AssetBundle
 {
     public $sourcePath = '@app/assets/site';
     public $depends = [

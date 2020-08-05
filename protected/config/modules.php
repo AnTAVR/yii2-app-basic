@@ -28,4 +28,7 @@ return [
     'news' => [
         'class' => 'app\modules\news\Module',
     ],
+    'products' => [
+        'class' => 'app\modules\products\Module',
+    ],
 ];

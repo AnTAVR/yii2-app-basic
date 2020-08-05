@@ -9,6 +9,7 @@ use app\assets\SitesEndAsset;
 use app\modules\account\models\User;
 use app\modules\articles\components\ArticlesItems;
 use app\modules\news\components\NewsItems;
+use app\modules\products\components\ProductsItems;
 use app\modules\rbac\helpers\RBAC;
 use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
@@ -87,7 +88,7 @@ HTML5,
 
 </header>
 
-<main class="container-fluid">
+<main>
     <?php OwlCarouselWidget::begin([
         'container' => 'div',
         'containerOptions' => [
@@ -208,6 +209,11 @@ HTML5,
         $menuItems[] = $item;
     }
 
+    $item = ProductsItems::items(['published_at' => SORT_DESC, 'id' => SORT_DESC], 2);
+    if ($item) {
+        $menuItems[] = $item;
+    }
+
     $menuItems[] = ['label' => Icon::show('envelope'),
         'encode' => false,
         'url' => ['/contact/default/index'],
@@ -292,16 +298,40 @@ HTML5,
 
     <?= Alert::widget() ?>
 
-    <?= $content ?>
+    <div class="container-fluid">
+        <?= $content ?>
+
+    </div>
 
 </main>
 
 <footer class="container-fluid badge-dark border-top border-danger">
     <div class="row justify-content-between">
+        <?php
+        $menuItems = [
+            ['label' => Yii::t('app', 'About Us'),
+                'url' => ['/statics/default/index', 'meta_url' => 'about'],
+            ],
+            ['label' => Yii::t('app', 'Testimonials'),
+                'url' => ['/statics/default/index', 'meta_url' => 'testimonials'],
+            ],
+            ['label' => Yii::t('app', 'Terms of Service'),
+                'url' => ['/statics/default/index', 'meta_url' => 'terms-of-service'],
+            ],
+            ['label' => Yii::t('app', 'Privacy'),
+                'url' => ['/statics/default/index', 'meta_url' => 'privacy'],
+            ],
+            ['label' => Yii::t('app', 'Contact Us'),
+                'url' => ['/contact/default/index'],
+            ],
+        ] ?>
+
         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-right">
-            <h2><?= Yii::t('app', 'About Us') ?></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis impedit, odit minima repellat,
-                doloribus alias amet consequatur inventore.</p>
+            <h4><?= Yii::t('app', 'Quick Links') ?></h4>
+            <?= Menu::widget([
+                'options' => ['class' => 'list-unstyled'],
+                'items' => $menuItems,
+            ]) ?>
         </div>
 
         <?php
@@ -327,34 +357,18 @@ HTML5,
                 ]) ?>
             </div>
         <?php endif ?>
-
         <?php
-        $menuItems = [
-            ['label' => Yii::t('app', 'About Us'),
-                'url' => ['/statics/default/index', 'meta_url' => 'about'],
-            ],
-            ['label' => Yii::t('app', 'Testimonials'),
-                'url' => ['/statics/default/index', 'meta_url' => 'testimonials'],
-            ],
-            ['label' => Yii::t('app', 'Terms of Service'),
-                'url' => ['/statics/default/index', 'meta_url' => 'terms-of-service'],
-            ],
-            ['label' => Yii::t('app', 'Privacy'),
-                'url' => ['/statics/default/index', 'meta_url' => 'privacy'],
-            ],
-            ['label' => Yii::t('app', 'Contact Us'),
-                'url' => ['/contact/default/index'],
-            ],
-        ];
-        ?>
 
-        <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-            <h4><?= Yii::t('app', 'Quick Links') ?></h4>
-            <?= Menu::widget([
-                'options' => ['class' => 'list-unstyled'],
-                'items' => $menuItems,
-            ]) ?>
-        </div>
+        $items = ProductsItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
+        if ($items): ?>
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
+                <h4><?= $items['label'] ?></h4>
+                <?= Menu::widget([
+                    'options' => ['class' => 'list-unstyled'],
+                    'items' => $items['items'],
+                ]) ?>
+            </div>
+        <?php endif ?>
     </div>
 
     <div class="row">

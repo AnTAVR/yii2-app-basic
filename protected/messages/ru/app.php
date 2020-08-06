@@ -92,6 +92,8 @@ return [
     'Database' => 'База данных',
     'Delete all' => 'Удалить всё',
     'Delete all?' => 'Удалить всё?',
+    'Delete selected' => 'Удалить выбранное',
+    'Delete selected?' => 'Удалить выбранное?',
     'Delivery' => 'Доставка',
     'Description' => 'Описание',
     'Docs' => 'Документы',

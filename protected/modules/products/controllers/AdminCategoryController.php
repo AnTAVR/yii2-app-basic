@@ -34,6 +34,7 @@ class AdminCategoryController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
+                    'multi-delete' => ['post'],
                 ],
             ],
         ];
@@ -123,6 +124,14 @@ class AdminCategoryController extends Controller
     {
         $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionMultiDelete(): Response
+    {
+        if ($grid = Yii::$app->request->post('grid')) {
+            Category::deleteAll(['id' => explode(',', $grid)]);
+        }
         return $this->redirect(['index']);
     }
 }

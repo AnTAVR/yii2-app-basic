@@ -37,6 +37,7 @@ class AdminFilesController extends Controller
                 'actions' => [
                     'delete' => ['post'],
                     'upload' => ['post'],
+                    'multi-delete' => ['post'],
                 ],
             ],
         ];
@@ -137,6 +138,14 @@ class AdminFilesController extends Controller
         $model = $this->findModel($id);
         $model->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionMultiDelete(): Response
+    {
+        if ($grid = Yii::$app->request->post('grid')) {
+            UploaderFile::deleteAll(['id' => explode(',', $grid)]);
+        }
         return $this->redirect(['index']);
     }
 }

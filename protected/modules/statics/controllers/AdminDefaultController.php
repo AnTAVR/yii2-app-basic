@@ -34,6 +34,7 @@ class AdminDefaultController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['post'],
+                    'multi-delete' => ['post'],
                 ],
             ],
         ];
@@ -123,6 +124,14 @@ class AdminDefaultController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['/statics/admin-default']);
+        return $this->redirect(['index']);
+    }
+
+    public function actionMultiDelete(): Response
+    {
+        if ($grid = Yii::$app->request->post('grid')) {
+            StaticPage::deleteAll(['id' => explode(',', $grid)]);
+        }
+        return $this->redirect(['index']);
     }
 }

@@ -14,6 +14,7 @@ use app\modules\products\traits\ProductsStatusTrait;
 use kartik\icons\Icon;
 use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
+use yii\grid\CheckboxColumn;
 use yii\grid\GridView;
 use yii\web\View;
 
@@ -33,14 +34,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'btn btn-outline-success',
                 ]
             ) ?>
+            <?= Html::a(
+                Icon::show('trash') . Yii::t('app', 'Delete selected'),
+                ['multi-delete'],
+                [
+                    'class' => 'btn btn-outline-danger',
+                    'onclick' => <<< JAVASCRYPT
+let grid = $("#grid").yiiGridView("getSelectedRows");
+$(this).attr("data-params", JSON.stringify({grid}));
+JAVASCRYPT,
+                    'data-method' => 'post',
+                    'data-confirm' => Yii::t('app', 'Delete selected?'),
+                ]
+            ) ?>
 
         </div>
     </div>
 
     <?= GridView::widget([
+        'id' => 'grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            [
+                'class' => CheckboxColumn::class,
+            ],
             [
                 'attribute' => 'id',
                 'headerOptions' => [

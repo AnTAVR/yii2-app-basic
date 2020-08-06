@@ -13,12 +13,12 @@ return [
         'firstPageLabel' => true,
         'jumpPageLabel' => true,
     ],
-    yii\widgets\ActiveField::class => [
-        'class' => yii\bootstrap4\ActiveField::class,
-    ],
-    yii\widgets\ActiveForm::class => [
-        'class' => yii\bootstrap4\ActiveForm::class,
-    ],
+//    yii\widgets\ActiveField::class => [
+//        'class' => yii\bootstrap4\ActiveField::class,
+//    ],
+//    yii\widgets\ActiveForm::class => [
+//        'class' => yii\bootstrap4\ActiveForm::class,
+//    ],
     yii\widgets\InputWidget::class => [
         'class' => yii\bootstrap4\InputWidget::class,
     ],

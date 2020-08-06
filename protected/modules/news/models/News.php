@@ -35,8 +35,6 @@ class News extends ActiveRecord
     public const CONTENT_SHORT_MAX_SIZE = 1024;
     public const CONTENT_FULL_MAX_SIZE = 65535;
 
-    public $status = IActiveNewsStatus::DRAFT;
-
     public static function tableName(): string
     {
         return '{{%news}}';

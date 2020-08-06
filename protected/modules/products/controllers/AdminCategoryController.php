@@ -44,7 +44,7 @@ class AdminCategoryController extends Controller
      */
     public function actionIndex(): string
     {
-        $searchModel = new CategorySearch;
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search();
 
         return $this->render('index', [
@@ -84,6 +84,7 @@ class AdminCategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

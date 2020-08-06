@@ -44,7 +44,7 @@ class AdminProductController extends Controller
      */
     public function actionIndex(): string
     {
-        $searchModel = new ProductSearch;
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search();
 
         return $this->render('index', [
@@ -84,6 +84,7 @@ class AdminProductController extends Controller
     public function actionCreate()
     {
         $model = new Products();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

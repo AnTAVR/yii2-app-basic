@@ -84,6 +84,7 @@ class AdminDefaultController extends Controller
     public function actionCreate()
     {
         $model = new StaticPage();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

@@ -1,4 +1,12 @@
-<?php use app\components\grid\ActionColumn;
+<?php
+
+/* @var $this View */
+
+/* @var $dataProvider ActiveDataProvider */
+
+/* @var $searchModel NewsSearch */
+
+use app\components\grid\ActionColumn;
 use app\helpers\CSS;
 use app\modules\news\models\News;
 use app\modules\news\models\NewsSearch;
@@ -9,12 +17,6 @@ use yii\data\ActiveDataProvider;
 use yii\grid\CheckboxColumn;
 use yii\grid\GridView;
 use yii\web\View;
-
-/* @var $this View */
-
-/* @var $dataProvider ActiveDataProvider */
-
-/* @var $searchModel NewsSearch */
 
 $this->title = Yii::t('app', 'News');
 $this->params['breadcrumbs'][] = $this->title;
@@ -37,10 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['multi-delete'],
                 [
                     'class' => 'btn btn-outline-danger',
-                    'onclick' => <<< JAVASCRYPT
+                    'onclick' => <<<JS
 let grid = $("#grid").yiiGridView("getSelectedRows");
 $(this).attr("data-params", JSON.stringify({grid}));
-JAVASCRYPT,
+JS,
                     'data-method' => 'post',
                     'data-confirm' => Yii::t('app', 'Delete selected?'),
                 ]

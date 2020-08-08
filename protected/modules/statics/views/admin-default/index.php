@@ -19,6 +19,10 @@ use yii\web\View;
 
 $this->title = Yii::t('app', 'Static Pages');
 $this->params['breadcrumbs'][] = $this->title;
+$onclick = <<<JS
+let grid = $("#grid").yiiGridView("getSelectedRows");
+$(this).attr("data-params", JSON.stringify({grid}));
+JS;
 ?>
 
 <div class="clearfix <?= CSS::generateCurrentClass() ?>">
@@ -38,10 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['multi-delete'],
                 [
                     'class' => 'btn btn-outline-danger',
-                    'onclick' => <<<JS
-let grid = $("#grid").yiiGridView("getSelectedRows");
-$(this).attr("data-params", JSON.stringify({grid}));
-JS,
+                    'onclick' => $onclick,
                     'data-method' => 'post',
                     'data-confirm' => Yii::t('app', 'Delete selected?'),
                 ]

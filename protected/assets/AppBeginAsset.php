@@ -12,6 +12,7 @@ class AppBeginAsset extends AssetBundle
     public $sourcePath = '@app/assets/app';
     public $depends = [
         YiiAsset::class,
+        PopperAsset::class,
         BootstrapPluginAsset::class,
         FontAwesomeAsset::class,
         AosAsset::class,

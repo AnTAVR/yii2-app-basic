@@ -25,6 +25,9 @@ $(function () {
 
             $this.keyup(function () {
                 const str = $(this).val().trim();
+                if ($destination.parent().children('.input-group-prepend').children('.input-group-text.btn').hasClass(opts.class_disable)) {
+                    return;
+                }
                 let result = '';
                 for (let i = 0; i < str.length; i++) {
                     result += $.fn.UrlTranslit.transliterate(str.charAt(i), o)
@@ -74,6 +77,11 @@ $(function () {
         return trChar;
     };
 
+    $.fn.UrlTranslit.onclick = function () {
+        $(this).toggleClass($.fn.UrlTranslit.defaults.class_enable);
+        $(this).toggleClass($.fn.UrlTranslit.defaults.class_disable);
+    }
+
     /**
      * Default options
      */
@@ -97,6 +105,9 @@ $(function () {
          *    url - used for transliterating text into url slug
          *    raw - raw transliteration (with special characters)
          */
-        type: 'url'
+        type: 'url',
+
+        class_enable: 'text-info',
+        class_disable: 'text-danger',
     };
 })(jQuery);

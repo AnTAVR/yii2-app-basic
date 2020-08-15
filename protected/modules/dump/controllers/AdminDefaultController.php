@@ -4,7 +4,6 @@ namespace app\modules\dump\controllers;
 
 use app\modules\dump\helpers\BaseDump;
 use app\modules\dump\helpers\DumpInterface;
-use Symfony\Component\Process\Process;
 use Yii;
 use yii\base\Exception as YiiException;
 use yii\base\InvalidConfigException;
@@ -94,16 +93,25 @@ class AdminDefaultController extends Controller
      */
     protected static function runProcess($command, $isRestore = false): void
     {
-        $process = new Process($command);
-        $process->run();
-        if ($process->isSuccessful()) {
+        $descriptorspec = [
+            ['pipe', 'r'], // STDIN
+            ['pipe', 'w'], // STDOUT
+            ['pipe', 'w'], // STDERR
+        ];
+        $command_nw = implode(' ', $command);
+
+        $process = proc_open($command_nw, $descriptorspec, $pipes);
+//        $output = stream_get_contents($pipes[1]);
+        $output_err = stream_get_contents($pipes[2]);
+        $return_value = proc_close($process);
+        if ($return_value === 0) {
             $msg = !$isRestore ? Yii::t('app', 'Dump successfully created.') : Yii::t('app', 'Dump successfully restored.');
             Yii::$app->session->addFlash('success', $msg);
         } else {
             $msg = !$isRestore ? Yii::t('app', 'Dump failed.') : Yii::t('app', 'Restore failed.');
             $commandTxt = implode(' ', $command);
-            Yii::$app->session->addFlash('error', $msg . '<br>' . 'Command - ' . $commandTxt . '<br>' . $process->getOutput() . $process->getErrorOutput());
-            Yii::error($msg . PHP_EOL . 'Command - ' . $commandTxt . PHP_EOL . $process->getOutput() . PHP_EOL . $process->getErrorOutput());
+            Yii::$app->session->addFlash('error', $msg . '<br>' . 'Command - ' . $commandTxt . '<br>' . $output_err . $return_value);
+            Yii::error($msg . PHP_EOL . 'Command - ' . $commandTxt . PHP_EOL . $output_err . PHP_EOL . $return_value);
         }
     }
 

@@ -1,20 +1,19 @@
 <?php
 
 use app\migrations\DefaultContent;
-use app\modules\products\models\Products;
-use app\modules\products\traits\IActiveProductsStatus;
+use app\modules\products\models\Category;
 use yii\db\Migration;
 
-class m000003_000004_insert_products extends Migration
+class m000003_000200_insert_products_category extends Migration
 {
-    public const CONTENT_TITLE = 'product';
-    public const COUNT = 300;
+    public const CONTENT_TITLE = 'category';
+    public const COUNT = 3;
     public $tableName;
 
     public function init(): void
     {
         parent::init();
-        $this->tableName = Products::tableName();
+        $this->tableName = Category::tableName();
     }
 
     public function up()
@@ -35,11 +34,8 @@ class m000003_000004_insert_products extends Migration
             $style = $styles[array_rand($styles)];
             $this->insert($this->tableName, [
                 'published_at' => time(),
-                'category_id' => random_int(1, 3),
-                'status' => IActiveProductsStatus::ACTIVE,
 
                 'content_title' => $title,
-                'content_short' => str_replace('{float}', $style, $content_short),
                 'content_full' => str_replace(['{title}', '{float}'], [$title, $style], $content_full),
 
                 'meta_url' => $title,

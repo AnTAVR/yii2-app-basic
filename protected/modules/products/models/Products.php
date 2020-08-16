@@ -15,7 +15,6 @@ use yii\helpers\Url;
  * Database fields:
  * @property int $id [int(11)]
  * @property int $published_at [int(11)]
- * @property int $category_id [int(11)]
  * @property int $status [smallint(6)]
  * @property string $content_title [varchar(255)]
  * @property string $content_short
@@ -26,8 +25,9 @@ use yii\helpers\Url;
  * @property int $view_count [int(11)]
  *
  * Fields:
- * @property Category $category
  * @property null|string|int $published
+ * @property-read array $categories [Category]
+ * @property-read mixed $relations [Relations]
  * @property string $url
  * @property array $arrUrl
  */
@@ -49,11 +49,6 @@ class Products extends ActiveRecord
         return [
             ['published', 'trim'],
             ['published', 'datetime'],
-
-            ['category_id', 'trim'],
-            ['category_id', 'required'],
-            ['category_id', 'integer'],
-            ['category_id', 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
 
             ['content_title', 'trim'],
             ['content_title', 'required'],
@@ -91,6 +86,8 @@ class Products extends ActiveRecord
             ['status', 'default',
                 'value' => IActiveProductsStatus::DRAFT],
             ['status', 'in', 'range' => ProductsStatusTrait::getStatusRange()],
+
+            ['categories', 'safe'],
         ];
     }
 
@@ -103,9 +100,6 @@ class Products extends ActiveRecord
             'published' => Yii::t('app', 'Published At'),
             'status' => Yii::t('app', 'Status'),
 
-            'category_id' => Yii::t('app', 'Category'),
-            'category' => Yii::t('app', 'Category'),
-
             'content_title' => Yii::t('app', 'Title'),
             'content_short' => Yii::t('app', 'Content Short'),
             'content_full' => Yii::t('app', 'Content Full'),
@@ -116,7 +110,7 @@ class Products extends ActiveRecord
 
             'view_count' => Yii::t('app', 'View Count'),
 
-            'url' => Yii::t('app', 'Products Url'),
+            'url' => Yii::t('app', 'Url'),
         ];
     }
 
@@ -131,11 +125,6 @@ class Products extends ActiveRecord
             'meta_description' => Yii::t('app', 'Max length {length}', ['length' => $params['string.max']]),
             'meta_keywords' => Yii::t('app', 'Max length {length}', ['length' => $params['string.max']]),
         ];
-    }
-
-    public function getCategory(): ActiveQuery
-    {
-        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     /**
@@ -163,5 +152,31 @@ class Products extends ActiveRecord
     public function getUrl(): string
     {
         return Url::to($this->arrUrl);
+    }
+
+    public function getRelations(): ActiveQuery
+    {
+        return $this->hasMany(Relations::class, ['product_id' => 'id']);
+    }
+
+    public function getCategories(): ActiveQuery
+    {
+        return $this->hasMany(Category::class, ['id' => 'category_id'])
+            ->via('relations')
+            ->orderBy(['published_at' => SORT_DESC, 'id' => SORT_ASC]);
+    }
+
+    /**
+     * @param $value int[]
+     */
+    public function setCategories($value): void
+    {
+        Relations::deleteAll(['product_id' => $this->id]);
+        if (is_array($value)) {
+            foreach ($value as $category_id) {
+                $rel = new Relations(['product_id' => $this->id, 'category_id' => $category_id]);
+                $rel->save();
+            }
+        }
     }
 }

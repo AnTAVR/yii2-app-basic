@@ -2,10 +2,13 @@
 
 namespace app\modules\products\models;
 
+use app\modules\products\traits\CategoryTypeTrait;
+use app\modules\products\traits\IActiveCategoryType;
 use app\modules\products\traits\IActiveProductsStatus;
 use app\widgets\UrlTranslit\UrlTranslit;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 
@@ -13,6 +16,7 @@ use yii\helpers\Url;
  * Database fields:
  * @property int $id [int(11)]
  * @property int $published_at [int(11)]
+ * @property int $type [smallint(6)]
  * @property string $content_title [varchar(255)]
  * @property string $content_full
  * @property string $meta_url [varchar(255)]
@@ -22,12 +26,15 @@ use yii\helpers\Url;
  * Fields:
  * @property null|string|int $published
  * @property-read string $url
- * @property-read integer|string $count
- * @property-read array $product [Products]
+ * @property-read integer $count
+ * @property-read Products[] $products
+ * @property-read Relations[] $relations
  * @property-read array $arrUrl
  */
 class Category extends ActiveRecord
 {
+    use CategoryTypeTrait;
+
     public const CONTENT_FULL_MAX_SIZE = 65535;
 
     public static function tableName(): string
@@ -67,6 +74,12 @@ class Category extends ActiveRecord
             ['meta_url', 'match',
                 'pattern' => UrlTranslit::PATTERN],
             ['meta_url', 'unique'],
+
+            ['type', 'required'],
+            ['type', 'integer'],
+            ['type', 'default',
+                'value' => IActiveCategoryType::RIGHT],
+            ['type', 'in', 'range' => CategoryTypeTrait::getTypeRange()],
         ];
     }
 
@@ -77,6 +90,7 @@ class Category extends ActiveRecord
 
             'published_at' => Yii::t('app', 'Published At'),
             'published' => Yii::t('app', 'Published At'),
+            'type' => Yii::t('app', 'Type'),
 
             'content_title' => Yii::t('app', 'Title'),
             'content_full' => Yii::t('app', 'Content Full'),
@@ -131,20 +145,19 @@ class Category extends ActiveRecord
 
     public function getCount()
     {
-        return Products::find()->where(['category_id' => $this->id])->count();
+        return $this->getRelations()->count();
     }
 
-    public function getProduct()
+    public function getRelations(): ActiveQuery
     {
-        if (($model = Products::find()
-                ->where(['category_id' => $this->id, 'status' => IActiveProductsStatus::ACTIVE])
-                ->orderBy(['published_at' => SORT_DESC, 'id' => SORT_ASC])
-//                ->limit(10)
-                ->all()
-            ) !== null
-        ) {
-            return $model;
-        }
-        return [];
+        return $this->hasMany(Relations::class, ['category_id' => 'id']);
+    }
+
+    public function getProducts(): ActiveQuery
+    {
+        return $this->hasMany(Products::class, ['id' => 'product_id'])
+            ->via('relations')
+            ->where(['status' => IActiveProductsStatus::ACTIVE])
+            ->orderBy(['published_at' => SORT_DESC, 'id' => SORT_ASC]);
     }
 }

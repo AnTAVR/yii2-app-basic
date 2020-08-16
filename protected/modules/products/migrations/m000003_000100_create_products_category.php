@@ -2,9 +2,10 @@
 
 use app\helpers\DbHelper;
 use app\modules\products\models\Category;
+use app\modules\products\traits\IActiveCategoryType;
 use yii\db\Migration;
 
-class m000003_000001_create_products_category extends Migration
+class m000003_000100_create_products_category extends Migration
 {
     public $tableName;
 
@@ -27,6 +28,7 @@ class m000003_000001_create_products_category extends Migration
             'id' => $this->primaryKey(),
 
             'published_at' => $this->bigInteger(),
+            'type' => $this->smallInteger()->notNull()->defaultValue(IActiveCategoryType::CENTER),
 
             'content_title' => $this->string()->notNull(),
             'content_full' => $this->text(),

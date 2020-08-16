@@ -9,6 +9,7 @@ use app\components\grid\ActionColumn;
 use app\helpers\CSS;
 use app\modules\products\models\Category;
 use app\modules\products\models\CategorySearch;
+use app\modules\products\traits\CategoryTypeTrait;
 use kartik\icons\Icon;
 use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
@@ -73,6 +74,14 @@ JS;
             ],
             'content_title',
             'published_at:datetime',
+            [
+                'attribute' => 'type',
+                'filter' => CategoryTypeTrait::getTypeList(),
+                'value' => static function ($data) {
+                    /** @var Category $data */
+                    return $data->getType();
+                }
+            ],
             'count',
             [
                 'class' => ActionColumn::class,

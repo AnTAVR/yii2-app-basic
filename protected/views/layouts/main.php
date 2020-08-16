@@ -9,7 +9,9 @@ use app\assets\SiteEndAsset;
 use app\modules\account\models\User;
 use app\modules\articles\components\ArticlesItems;
 use app\modules\news\components\NewsItems;
+use app\modules\products\components\ProductsCategoryItems;
 use app\modules\products\components\ProductsItems;
+use app\modules\products\traits\IActiveCategoryType;
 use app\modules\rbac\helpers\RBAC;
 use app\widgets\Alert;
 use app\widgets\Thumbnail\Thumbnail;
@@ -209,7 +211,7 @@ HTML5,
         $menuItems[] = $item;
     }
 
-    $item = ProductsItems::items(['published_at' => SORT_DESC, 'id' => SORT_DESC], 2);
+    $item = ProductsItems::items(['published_at' => SORT_DESC, 'id' => SORT_DESC]);
     if ($item) {
         $menuItems[] = $item;
     }
@@ -335,37 +337,37 @@ HTML5,
         </div>
 
         <?php
-        $items = ArticlesItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
+        $items = ProductsCategoryItems::items(IActiveCategoryType::LEFT);
         if ($items): ?>
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-                <h4><?= $items['label'] ?></h4>
-                <?= Menu::widget([
-                    'options' => ['class' => 'list-unstyled'],
-                    'items' => $items['items'],
+                <h4>LEFT</h4>
+                <?= Nav::widget([
+                    'options' => ['class' => 'flex-column'],
+                    'items' => $items,
                 ]) ?>
             </div>
         <?php endif ?>
-        <?php
 
-        $items = NewsItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
+        <?php
+        $items = ProductsCategoryItems::items(IActiveCategoryType::CENTER);
         if ($items): ?>
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-                <h4><?= $items['label'] ?></h4>
-                <?= Menu::widget([
-                    'options' => ['class' => 'list-unstyled'],
-                    'items' => $items['items'],
+                <h4>CENTER</h4>
+                <?= Nav::widget([
+                    'options' => ['class' => 'flex-column'],
+                    'items' => $items,
                 ]) ?>
             </div>
         <?php endif ?>
-        <?php
 
-        $items = ProductsItems::items(['view_count' => SORT_DESC, 'published_at' => SORT_ASC]);
+        <?php
+        $items = ProductsCategoryItems::items(IActiveCategoryType::RIGHT);
         if ($items): ?>
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6" data-aos="fade-up">
-                <h4><?= $items['label'] ?></h4>
-                <?= Menu::widget([
-                    'options' => ['class' => 'list-unstyled'],
-                    'items' => $items['items'],
+                <h4>RIGHT</h4>
+                <?= Nav::widget([
+                    'options' => ['class' => 'flex-column'],
+                    'items' => $items,
                 ]) ?>
             </div>
         <?php endif ?>

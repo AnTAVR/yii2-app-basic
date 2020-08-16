@@ -29,9 +29,6 @@ class ProductSearch extends Model
 
             ['status', 'integer'],
             ['status', 'in', 'range' => ProductsStatusTrait::getStatusRange()],
-
-            ['category_id', 'integer'],
-            ['category_id', 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -61,7 +58,6 @@ class ProductSearch extends Model
 
         $query->andFilterWhere(['like', 'meta_url', $this->meta_url])
             ->andFilterWhere(['like', 'content_title', $this->content_title])
-            ->andFilterWhere(['category_id' => $this->category_id])
             ->andFilterWhere(['status' => $this->status]);
 
         return $dataProvider;

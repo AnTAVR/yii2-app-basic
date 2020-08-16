@@ -7,7 +7,6 @@
 
 use app\components\grid\ActionColumn;
 use app\helpers\CSS;
-use app\modules\products\models\Category;
 use app\modules\products\models\Products;
 use app\modules\products\models\ProductSearch;
 use app\modules\products\traits\ProductsStatusTrait;
@@ -82,11 +81,6 @@ JS;
                     /** @var Products $data */
                     return $data->getStatus();
                 }
-            ],
-            [
-                'attribute' => 'category_id',
-                'filter' => Category::find()->select(['content_title', 'id'])->indexBy('id')->column(),
-                'value' => 'category.content_title',
             ],
             'view_count:integer',
             [

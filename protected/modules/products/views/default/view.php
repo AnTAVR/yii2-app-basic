@@ -22,7 +22,6 @@ if (!empty($model->meta_keywords)) {
 }
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['/products']];
-$this->params['breadcrumbs'][] = ['label' => $category->content_title, 'url' => $category->arrUrl];
 
 $this->title = $model->content_title;
 $this->params['breadcrumbs'][] = $this->title;

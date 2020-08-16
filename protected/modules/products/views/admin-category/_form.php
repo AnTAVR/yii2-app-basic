@@ -5,6 +5,7 @@
 /* @var $model Category */
 
 use app\modules\products\models\Category;
+use app\modules\products\traits\CategoryTypeTrait;
 use app\widgets\UrlTranslit\UrlTranslit;
 use kartik\datetime\DateTimePicker;
 use kartik\editors\Summernote;
@@ -17,6 +18,9 @@ use yii\web\View;
 <?php $form = ActiveForm::begin(['id' => 'products-form']); ?>
 
 <div class="form-group form-row">
+    <?= $form->field($model, 'type', ['options' => ['class' => 'col-md-3']])
+        ->dropDownList(CategoryTypeTrait::getTypeList()) ?>
+
     <?= $form->field($model, 'published', ['options' => ['class' => 'col-md-5']])
         ->widget(DateTimePicker::class, [
             'pluginOptions' => [

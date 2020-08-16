@@ -1,12 +1,11 @@
 <?php
 
 use app\helpers\DbHelper;
-use app\modules\products\models\Category;
 use app\modules\products\models\Products;
 use app\modules\products\traits\IActiveProductsStatus;
 use yii\db\Migration;
 
-class m000003_000003_create_products extends Migration
+class m000003_000300_create_products extends Migration
 {
     public $tableName;
 
@@ -29,7 +28,6 @@ class m000003_000003_create_products extends Migration
             'id' => $this->primaryKey(),
 
             'published_at' => $this->bigInteger(),
-            'category_id' => $this->integer()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(IActiveProductsStatus::DRAFT),
 
             'content_title' => $this->string()->notNull(),
@@ -45,9 +43,6 @@ class m000003_000003_create_products extends Migration
 
         $name = 'published_at';
         $this->createIndex(DbHelper::indexName($this->tableName, $name), $this->tableName, $name);
-
-        $name = 'category_id';
-        $this->addForeignKey(DbHelper::foreignName($this->tableName, $name), $this->tableName, $name, Category::tableName(), 'id', 'CASCADE', 'RESTRICT');
     }
 
     public function down()

@@ -44,11 +44,9 @@ class DefaultController extends Controller
     {
         $model = $this->findModel($meta_url);
         $model->updateCounters(['view_count' => 1]);
-        $category = $model->category;
 
         return $this->render('view', [
             'model' => $model,
-            'category' => $category,
         ]);
     }
 

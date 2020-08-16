@@ -3,8 +3,6 @@
 namespace app\modules\products\controllers;
 
 use app\modules\products\models\Category;
-use app\modules\products\models\Products;
-use app\modules\products\traits\IActiveProductsStatus;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -33,22 +31,21 @@ class CategoryController extends Controller
     public function actionView($meta_url): string
     {
         $model = $this->findModel($meta_url);
-        $query = Products::find()->where(['status' => IActiveProductsStatus::ACTIVE, 'category_id' => $model->id]);
 
         $pagination = new Pagination([
-            'totalCount' => $query->count(),
+            'totalCount' => $model->getProducts()->count(),
             'defaultPageSize' => $this->module->params['pageSize'],
             'validatePage' => false,
             'pageSizeLimit' => false,
         ]);
 
-        if ($pagination->page >= $pagination->pageCount) {
+        if ($pagination->page !== 0 && $pagination->page >= $pagination->pageCount) {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
 
-        $data = $query->offset($pagination->offset)->limit($pagination->limit)->all();
+        $products = $model->getProducts()->offset($pagination->offset)->limit($pagination->limit)->all();
 
-        return $this->render('view', ['data' => $data, 'pagination' => $pagination, 'model' => $model]);
+        return $this->render('view', ['products' => $products, 'pagination' => $pagination, 'model' => $model]);
     }
 
     /**

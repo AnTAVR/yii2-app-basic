@@ -12,6 +12,7 @@ use kartik\datetime\DateTimePicker;
 use kartik\editors\Summernote;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\helpers\ArrayHelper;
 use yii\web\View;
 
 ?>
@@ -30,9 +31,6 @@ use yii\web\View;
                 'autoclose' => true,
             ]
         ]) ?>
-
-    <?= $form->field($model, 'category_id', ['options' => ['class' => 'col-md-4']])
-        ->dropDownList(Category::find()->select(['content_title', 'id'])->indexBy('id')->column()) ?>
 
 </div>
 
@@ -60,6 +58,13 @@ use yii\web\View;
 
 <?= $form->field($model, 'meta_keywords')
     ->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'categories')
+    ->checkboxList(ArrayHelper::map(
+        Category::find()
+            ->select('id, content_title')
+            ->all(),
+        'id', 'content_title'), ['separator' => '<br />']) ?>
 
 <div class="form-group">
     <div class="btn-group p-2 ml-auto">

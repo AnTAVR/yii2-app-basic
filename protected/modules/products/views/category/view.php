@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this View */
-/* @var $data Products[] */
+/* @var $products Products[] */
 /* @var $pagination Pagination */
 
 /* @var $model Category */
@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     $col = 1;
     $i = 0;
-    foreach ($data as $model_) {
-        /* @var $model Products */
+    foreach ($products as $model_) {
+        /* @var $model_ Products */
         if (!$i) {
             echo '<div class="row">', "\n";
             $open = true;

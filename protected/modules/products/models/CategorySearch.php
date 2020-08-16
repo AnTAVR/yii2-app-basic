@@ -2,6 +2,7 @@
 
 namespace app\modules\products\models;
 
+use app\modules\products\traits\CategoryTypeTrait;
 use app\widgets\UrlTranslit\UrlTranslit;
 use Yii;
 use yii\base\Model;
@@ -11,6 +12,7 @@ class CategorySearch extends Model
 {
     public $meta_url;
     public $content_title;
+    public $type;
 
     public function rules(): array
     {
@@ -23,6 +25,9 @@ class CategorySearch extends Model
                 'max' => $params['string.max']],
             ['meta_url', 'match',
                 'pattern' => UrlTranslit::PATTERN],
+
+            ['type', 'integer'],
+            ['type', 'in', 'range' => CategoryTypeTrait::getTypeRange()],
         ];
     }
 
@@ -52,7 +57,8 @@ class CategorySearch extends Model
         }
 
         $query->andFilterWhere(['like', 'meta_url', $this->meta_url])
-            ->andFilterWhere(['like', 'content_title', $this->content_title]);
+            ->andFilterWhere(['like', 'content_title', $this->content_title])
+            ->andFilterWhere(['type' => $this->type]);
 
         return $dataProvider;
     }

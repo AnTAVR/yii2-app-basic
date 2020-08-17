@@ -55,7 +55,6 @@ class Category extends ActiveRecord
                 'max' => $params['string.max']],
 
             ['content_full', 'trim'],
-            ['content_full', 'required'],
             ['content_full', 'string',
                 'max' => self::CONTENT_FULL_MAX_SIZE],
 

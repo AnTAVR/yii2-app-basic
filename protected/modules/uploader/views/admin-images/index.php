@@ -57,6 +57,7 @@ JS;
             'id',
             'thumbnailUrl',
             'thumbnailUrl:image:',
+            'file',
             'comment:ntext',
             [
                 'class' => ActionColumn::class,

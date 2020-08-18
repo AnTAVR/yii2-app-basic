@@ -5,6 +5,8 @@
 /* @var $model Category */
 
 use app\modules\products\models\Category;
+use app\modules\products\models\Products;
+use yii\bootstrap4\Html;
 use yii\web\View;
 use yii\widgets\DetailView;
 
@@ -25,18 +27,18 @@ use yii\widgets\DetailView;
         ],
         'meta_description',
         'meta_keywords',
-//        [
-//            'attribute' => 'products',
-//            'value' => static function ($model) {
-//                /** @var Category $model */
-//                $ret = [];
-//                foreach ($model->products as $model_) {
-//                    /** @var Products $model_ */
-//                    $ret[] = Html::a($model_->content_title, $model_->url, ['target' => 'blank']);
-//                }
-//                return implode('<br />', $ret);
-//            },
-//            'format' => 'raw',
-//        ]
+        [
+            'attribute' => 'products',
+            'value' => static function ($model) {
+                /** @var Category $model */
+                $ret = [];
+                foreach ($model->products as $model_) {
+                    /** @var Products $model_ */
+                    $ret[] = Html::a($model_->content_title, $model_->url, ['target' => 'blank']);
+                }
+                return implode('<br />', $ret);
+            },
+            'format' => 'raw',
+        ]
     ],
 ]) ?>

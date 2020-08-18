@@ -10,8 +10,7 @@ $config = [
     'language' => $params['language'],
     'bootstrap' => ArrayHelper::merge(['log'], array_keys(require __DIR__ . '/modules.php')),
     'container' => [
-        'definitions' => [
-        ],
+        'definitions' => require __DIR__ . '/definitions.php',
         'singletons' => require __DIR__ . '/singletons.php',
     ],
 

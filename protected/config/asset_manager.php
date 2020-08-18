@@ -80,6 +80,11 @@ return [
         CodemirrorFormatterAsset::class => [
 //            'baseUrl' => '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.38.0',
             'sourcePath' => '@npm/codemirror/lib/util',
+            'publishOptions' => [
+                'only' => [
+                    'formatting.js',
+                ],
+            ],
         ],
         PhoneInputAsset::class => [
 //            'baseUrl' => '//cdnjs.cloudflare.com/ajax/libs/codemirror/2.38.0',
